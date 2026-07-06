@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vamikaexports.vercel.app/sitemap.xml

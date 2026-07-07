@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SITE, STONES, SIZES, GALLERY, VIDEOS, TERMS } from "./config";
 import PrivacyPolicy from "./PrivacyPolicy";
 import TermsAndConditions from "./TermsAndConditions";
@@ -256,9 +256,9 @@ function Footer() {
           <span>Pink · Green · Grey natural sandstone</span>
         </div>
         <div className="legal-links">
-          <a href="#privacy" className="footer-link">Privacy Policy</a>
+          <a href="/privacy" className="footer-link">Privacy Policy</a>
           <span>·</span>
-          <a href="#terms-conditions" className="footer-link">Terms &amp; Conditions</a>
+          <a href="/terms" className="footer-link">Terms &amp; Conditions</a>
         </div>
       </div>
     </footer>
@@ -266,6 +266,95 @@ function Footer() {
 }
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState("home");
+
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path === "/privacy") setCurrentPage("privacy");
+    else if (path === "/terms") setCurrentPage("terms");
+    else setCurrentPage("home");
+
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      if (path === "/privacy") setCurrentPage("privacy");
+      else if (path === "/terms") setCurrentPage("terms");
+      else setCurrentPage("home");
+      window.scrollTo(0, 0);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  const navigateTo = (page) => {
+    if (page === "home") {
+      window.history.pushState(null, "", "/");
+      setCurrentPage("home");
+    } else if (page === "privacy") {
+      window.history.pushState(null, "", "/privacy");
+      setCurrentPage("privacy");
+    } else if (page === "terms") {
+      window.history.pushState(null, "", "/terms");
+      setCurrentPage("terms");
+    }
+    window.scrollTo(0, 0);
+  };
+
+  if (currentPage === "privacy") {
+    return (
+      <>
+        <header className="header">
+          <div className="header-in">
+            <a href="/" onClick={(e) => { e.preventDefault(); navigateTo("home"); }} className="wordmark" aria-label="Vamika Minerals and Exports — home">
+              <b>{SITE.brand}</b>
+              <small>{SITE.brandSub}</small>
+            </a>
+            <nav className="nav" aria-label="Main">
+              <a href="/" onClick={(e) => { e.preventDefault(); navigateTo("home"); }} className="navlink">Home</a>
+              <a href="/" onClick={(e) => { e.preventDefault(); navigateTo("home"); }} className="btn">Back to Home</a>
+            </nav>
+          </div>
+        </header>
+        <main>
+          <section className="legal-page">
+            <PrivacyPolicy />
+          </section>
+        </main>
+        <Footer />
+      </>
+    );
+  }
+
+  if (currentPage === "terms") {
+    return (
+      <>
+        <header className="header">
+          <div className="header-in">
+            <a href="/" onClick={(e) => { e.preventDefault(); navigateTo("home"); }} className="wordmark" aria-label="Vamika Minerals and Exports — home">
+              <b>{SITE.brand}</b>
+              <small>{SITE.brandSub}</small>
+            </a>
+            <nav className="nav" aria-label="Main">
+              <a href="/" onClick={(e) => { e.preventDefault(); navigateTo("home"); }} className="navlink">Home</a>
+              <a href="/" onClick={(e) => { e.preventDefault(); navigateTo("home"); }} className="btn">Back to Home</a>
+            </nav>
+          </div>
+        </header>
+        <main>
+          <section className="legal-page">
+            <TermsAndConditions />
+          </section>
+        </main>
+        <Footer />
+      </>
+    );
+  }
+
+  // Default: Home page
   return (
     <>
       <Header />
@@ -277,12 +366,6 @@ export default function App() {
         <Terms />
         <About />
         <Contact />
-        <section id="privacy" className="legal-page">
-          <PrivacyPolicy />
-        </section>
-        <section id="terms-conditions" className="legal-page">
-          <TermsAndConditions />
-        </section>
       </main>
       <Footer />
     </>

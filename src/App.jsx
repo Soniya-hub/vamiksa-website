@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { SITE, STONES, SIZES, GALLERY, VIDEOS, TERMS } from "./config";
+import PrivacyPolicy from "./PrivacyPolicy";
+import TermsAndConditions from "./TermsAndConditions";
 
 const Strata = ({ center }) => (
   <div className={`strata${center ? " center" : ""}`} aria-hidden="true">
@@ -249,8 +251,15 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="wrap">
-        <span>© {new Date().getFullYear()} {SITE.brand} {SITE.brandSub} · {SITE.origin}</span>
-        <span>Pink · Green · Grey natural sandstone</span>
+        <div>
+          <span>© {new Date().getFullYear()} {SITE.brand} {SITE.brandSub} · {SITE.origin}</span>
+          <span>Pink · Green · Grey natural sandstone</span>
+        </div>
+        <div className="legal-links">
+          <a href="#privacy" className="footer-link">Privacy Policy</a>
+          <span>·</span>
+          <a href="#terms-conditions" className="footer-link">Terms &amp; Conditions</a>
+        </div>
       </div>
     </footer>
   );
@@ -268,6 +277,12 @@ export default function App() {
         <Terms />
         <About />
         <Contact />
+        <section id="privacy" className="legal-page">
+          <PrivacyPolicy />
+        </section>
+        <section id="terms-conditions" className="legal-page">
+          <TermsAndConditions />
+        </section>
       </main>
       <Footer />
     </>

@@ -354,7 +354,7 @@ function Contact() {
     window.open(`${SITE.whatsappLink}?text=${encodeURIComponent(inquiryText())}`, "_blank", "noopener");
   };
 
-  // Sends the inquiry straight from the page via FormSubmit — the mail lands in
+  // Sends the inquiry straight from the page via Web3Forms — the mail lands in
   // SITE.email with Reply-To set to the buyer's address, no mail app needed.
   // If the service is slow or down, we open a prefilled Gmail draft instead so
   // the inquiry is never lost.
@@ -368,13 +368,14 @@ function Contact() {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 12000);
     try {
-      const res = await fetch(`https://formsubmit.co/ajax/${SITE.email}`, {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         signal: controller.signal,
         body: JSON.stringify({
-          _subject: "Sandstone quotation request",
-          _template: "table",
+          access_key: SITE.web3formsKey,
+          subject: "Sandstone quotation request",
+          from_name: "Vamika Website Inquiry",
           name: form.name,
           email: form.email,
           phone: form.phone,
@@ -386,7 +387,7 @@ function Contact() {
         }),
       });
       const data = await res.json();
-      if (res.ok && (data.success === "true" || data.success === true)) {
+      if (res.ok && data.success) {
         setStatus("sent");
         setForm(FORM_DEFAULTS);
         return;

@@ -20,6 +20,9 @@ export const SITE = {
   iec: "IEC: Applied",                 // e.g. "IEC: 0123456789"
   gstin: "GSTIN: Applied",             // e.g. "GSTIN: 09XXXXX0000X1Z5"
 
+  // Web3Forms public access key — inquiry form emails land at `email` above.
+  web3formsKey: "145e6b2c-f2cb-4fdb-a226-72d5f9a0e94e",
+
   markets: ["UAE", "USA", "UK"],
 };
 

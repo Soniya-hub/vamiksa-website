@@ -447,7 +447,12 @@ section.tint { background: var(--paper-deep); }
   display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px;
   align-items: start; max-width: 980px; margin: 0 auto;
 }
+.inquiry-form .botcheck {
+  position: absolute; left: -9999px; width: 1px; height: 1px;
+  opacity: 0; pointer-events: none;
+}
 .inquiry-form {
+  position: relative;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(196, 155, 108, 0.28);
   border-radius: var(--radius);

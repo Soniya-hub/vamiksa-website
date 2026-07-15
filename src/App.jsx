@@ -326,7 +326,7 @@ function Faq() {
   );
 }
 
-const FORM_DEFAULTS = { name: "", email: "", phone: "", country: "", colour: "", size: "", quantity: "", message: "" };
+const FORM_DEFAULTS = { name: "", email: "", phone: "", country: "", colour: "", size: "", quantity: "", message: "", botcheck: "" };
 
 function Contact() {
   const [form, setForm] = useState(FORM_DEFAULTS);
@@ -364,6 +364,11 @@ function Contact() {
       setStatus("need-email");
       return;
     }
+    // Honeypot: humans never see this field; if it's filled, a bot did it.
+    if (form.botcheck) {
+      setStatus("sent");
+      return;
+    }
     setStatus("sending");
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 12000);
@@ -374,6 +379,7 @@ function Contact() {
         signal: controller.signal,
         body: JSON.stringify({
           access_key: SITE.web3formsKey,
+          botcheck: form.botcheck,
           subject: "Sandstone quotation request",
           from_name: "Vamika Website Inquiry",
           name: form.name,
@@ -416,6 +422,16 @@ function Contact() {
         </div>
         <div className="contact-grid">
           <form className="inquiry-form" onSubmit={sendWhatsApp}>
+            <input
+              type="checkbox"
+              name="botcheck"
+              className="botcheck"
+              tabIndex="-1"
+              autoComplete="off"
+              aria-hidden="true"
+              checked={!!form.botcheck}
+              onChange={(e) => setForm({ ...form, botcheck: e.target.checked ? "1" : "" })}
+            />
             <div className="form-row">
               <label>
                 Your name

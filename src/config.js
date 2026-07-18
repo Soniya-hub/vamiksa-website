@@ -23,14 +23,13 @@ export const SITE = {
   // TODO: full yard/office address + Google Maps link.
   // Fill both and it auto-appears in the footer with a "View on map" link.
   // mapsLink: paste the share URL from Google Maps for your location pin.
-  // TODO: add street/yard line in front (e.g. "Shop 4, Stone Market Rd, ...").
-  address: "Mirzapur, Uttar Pradesh 231001, India",
+  address: "Bhatwa ki Pokhari, Mirzapur, Uttar Pradesh 231001, India",
   mapsLink: "https://maps.app.goo.gl/CTovCZb9TGXx6UMD9",
 
   // Web3Forms public access key — inquiry form emails land at `email` above.
   web3formsKey: "145e6b2c-f2cb-4fdb-a226-72d5f9a0e94e",
 
-  markets: ["UAE", "USA", "UK"],
+  markets: ["UAE", "USA", "UK", "Worldwide"],
 };
 
 export const STONES = [

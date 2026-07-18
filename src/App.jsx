@@ -67,7 +67,7 @@ function Hero() {
           <p className="lede">
             Calibrated 35–40&nbsp;mm tiles, sourced directly from the quarries and
             processing units of Mirzapur — packed export-grade and shipped FOB
-            Indian Port to the UAE, USA and UK.
+            Indian Port to the UAE, USA, UK and worldwide.
           </p>
           <div className="hero-ctas">
             <a className="btn" href="#contact">Request a quotation</a>

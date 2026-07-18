@@ -20,6 +20,12 @@ export const SITE = {
   iec: "IEC: Applied",                 // e.g. "IEC: 0123456789"
   gstin: "GSTIN: Applied",             // e.g. "GSTIN: 09XXXXX0000X1Z5"
 
+  // TODO: full yard/office address + Google Maps link.
+  // Fill both and it auto-appears in the footer with a "View on map" link.
+  // mapsLink: paste the share URL from Google Maps for your location pin.
+  address: "",                         // e.g. "Plot 12, Stone Market Rd, Mirzapur, UP 231001"
+  mapsLink: "",                        // e.g. "https://maps.app.goo.gl/xxxxxxxx"
+
   // Web3Forms public access key — inquiry form emails land at `email` above.
   web3formsKey: "145e6b2c-f2cb-4fdb-a226-72d5f9a0e94e",
 
@@ -94,6 +100,37 @@ export const PROCESS = [
   {
     title: "Packing & shipment",
     desc: "Stock is packed in sea-worthy wooden crates and shipped FOB Indian Port with complete export documentation.",
+  },
+];
+
+// Quality & export packing — the how, not just the what. A new exporter that
+// can explain its process reads as experienced.
+// NOTE: confirm the calibration tolerance figure below matches what you can
+// actually hold on every order before promising it to buyers.
+export const QUALITY = [
+  {
+    title: "Calibration & tolerance",
+    desc: "Tiles are machine-calibrated to a consistent 35–40 mm thickness, held to roughly ±1.5 mm across the order so they lay flat and even on site.",
+  },
+  {
+    title: "Multi-stage inspection",
+    desc: "Every batch is checked three times — after cutting, after finishing and again before packing — for thickness, colour match, cracks and edge chipping.",
+  },
+  {
+    title: "Moisture & natural finish",
+    desc: "Stone is naturally dried before packing, with no artificial colouring or chemical treatment, so the tile you receive matches the sample you approved.",
+  },
+  {
+    title: "Export-grade crating",
+    desc: "Tiles are edge-protected and packed into sea-worthy wooden crates, strapped and sized for safe handling and long ocean transit.",
+  },
+  {
+    title: "Container loading",
+    desc: "Crates are loaded to balance weight within the container's ~27 t limit, blocked and braced to prevent shifting during transit.",
+  },
+  {
+    title: "Documentation",
+    desc: "Each shipment ships with commercial invoice, packing list, certificate of origin and the full export document set for smooth customs clearance.",
   },
 ];
 

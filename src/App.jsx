@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { SITE, STONES, SIZES, GALLERY, VIDEOS, TERMS, PROCESS, FAQS } from "./config";
+import { SITE, STONES, SIZES, GALLERY, VIDEOS, TERMS, PROCESS, QUALITY, FAQS } from "./config";
 import PrivacyPolicy from "./PrivacyPolicy";
 import TermsAndConditions from "./TermsAndConditions";
 
@@ -19,7 +19,7 @@ function Header({ onHome }) {
     [`${prefix}#stones`, "Stones"],
     [`${prefix}#products`, "Products"],
     [`${prefix}#gallery`, "Gallery"],
-    [`${prefix}#process`, "Process"],
+    [`${prefix}#quality`, "Quality"],
     [`${prefix}#terms`, "Export terms"],
     [`${prefix}#about`, "About"],
   ];
@@ -73,6 +73,9 @@ function Hero() {
             <a className="btn" href="#contact">Request a quotation</a>
             <a className="btn ghost" href="#gallery">View the stone</a>
           </div>
+          <p className="reply-note">
+            <span className="dot" aria-hidden="true" /> We reply to every inquiry within 24 hours.
+          </p>
           <div className="hero-meta">
             <div><b>3</b> natural colours</div>
             <div><b>4</b> standard sizes</div>
@@ -244,6 +247,33 @@ function Process() {
             </li>
           ))}
         </ol>
+      </div>
+    </section>
+  );
+}
+
+function Quality() {
+  return (
+    <section id="quality">
+      <div className="wrap">
+        <div className="sec-head">
+          <h2>Quality &amp; export packing</h2>
+          <Strata center />
+          <p>How each order is checked, packed and loaded — from the cutting floor to the container door.</p>
+        </div>
+        <div className="quality-grid">
+          {QUALITY.map((q, i) => (
+            <article className="quality-card" key={q.title}>
+              <span className="q-num">{String(i + 1).padStart(2, "0")}</span>
+              <h3>{q.title}</h3>
+              <p>{q.desc}</p>
+            </article>
+          ))}
+        </div>
+        <p className="note">
+          Samples are available before you order — at nominal cost, adjustable against your
+          confirmed order — so you approve the exact stone before production begins.
+        </p>
       </div>
     </section>
   );
@@ -537,12 +567,14 @@ function Footer({ home, onNavigate }) {
           <small>{SITE.brandSub}</small>
           <p>{SITE.tagline} · {SITE.origin}</p>
           <p>Pink · Green · Grey natural sandstone</p>
+          <p className="footer-creds">{SITE.iec} · {SITE.gstin}</p>
         </div>
         <nav className="footer-nav" aria-label="Footer">
           <span className="footer-head">Explore</span>
           <a href={`${prefix}#stones`}>Stones</a>
           <a href={`${prefix}#products`}>Products</a>
           <a href={`${prefix}#gallery`}>Gallery</a>
+          <a href={`${prefix}#quality`}>Quality &amp; packing</a>
           <a href={`${prefix}#terms`}>Export terms</a>
           <a href={`${prefix}#contact`}>Get a quote</a>
         </nav>
@@ -550,7 +582,10 @@ function Footer({ home, onNavigate }) {
           <span className="footer-head">Contact</span>
           <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
           <a href={`tel:${SITE.phone.replace(/\s/g, "")}`}>{SITE.phone}</a>
-          <span>{SITE.origin}</span>
+          {SITE.address ? <span>{SITE.address}</span> : <span>{SITE.origin}</span>}
+          {SITE.mapsLink && (
+            <a href={SITE.mapsLink} target="_blank" rel="noreferrer">View on Google Maps →</a>
+          )}
         </div>
       </div>
       <div className="wrap footer-base">
@@ -679,6 +714,7 @@ export default function App() {
         <Products />
         <Gallery />
         <Process />
+        <Quality />
         <Terms />
         <About />
         <Faq />

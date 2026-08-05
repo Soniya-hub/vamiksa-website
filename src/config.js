@@ -16,14 +16,14 @@ export const SITE = {
   phone: "+91 72338 12072",            // WhatsApp number
   whatsappLink: "https://wa.me/917233812072", // 91 + number, no spaces
   email: "info@vamikaexports.com",
-  // TODO: replace with real numbers once issued
+  // TODO: replace with the real IEC once issued
   iec: "IEC: Applied",                 // e.g. "IEC: 0123456789"
-  gstin: "GSTIN: Applied",             // e.g. "GSTIN: 09XXXXX0000X1Z5"
+  gstin: "GSTIN: 09ARZPP9424B2Z5",
 
   // TODO: full yard/office address + Google Maps link.
   // Fill both and it auto-appears in the footer with a "View on map" link.
   // mapsLink: paste the share URL from Google Maps for your location pin.
-  address: "Bhatwa ki Pokhari, Mirzapur, Uttar Pradesh 231001, India",
+  address: "1694, Bhatwa Ki Pokhari, Mirzapur, Uttar Pradesh 231001, India",
   mapsLink: "https://maps.app.goo.gl/CTovCZb9TGXx6UMD9",
 
   // Web3Forms public access key — inquiry form emails land at `email` above.

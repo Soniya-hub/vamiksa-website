@@ -1,7 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
-import { SITE, STONES, SIZES, GALLERY, VIDEOS, TERMS, PROCESS, QUALITY, FAQS } from "./config";
+import {
+  SITE, STONES, SIZES, METRIC_SIZES, GALLERY, VIDEOS, TERMS, PROCESS, QUALITY, FAQS,
+  IEC_NUMBER, THICKNESS, FINISH, FOB_PORT, PACKING, GI_STORY,
+} from "./config";
 import PrivacyPolicy from "./PrivacyPolicy";
 import TermsAndConditions from "./TermsAndConditions";
+
+// GSTIN, plus "IEC: <number>" only once IEC_NUMBER is filled in.
+const CREDS = [IEC_NUMBER && `IEC: ${IEC_NUMBER}`, SITE.gstin].filter(Boolean).join(" · ");
 
 const Strata = ({ center }) => (
   <div className={`strata${center ? " center" : ""}`} aria-hidden="true">
@@ -62,12 +68,12 @@ function Hero() {
         <div>
           <p className="eyebrow">Mirzapur · Uttar Pradesh · India</p>
           <h1>
-            Natural Indian sandstone in <em>pink</em>, <em>green</em> &amp; <em>grey</em>
+            Natural Indian sandstone in <em>pink</em> &amp; <em>green</em>
           </h1>
           <p className="lede">
-            Calibrated 35–40&nbsp;mm tiles, sourced directly from the quarries and
-            processing units of Mirzapur — packed export-grade and shipped FOB
-            Indian Port to the UAE, USA, UK and worldwide.
+            {GI_STORY} Calibrated {THICKNESS} tiles, sourced directly from the quarries and
+            processing units of Mirzapur — packed export-grade and shipped FOB {FOB_PORT} to
+            the UAE, USA, UK and worldwide.
           </p>
           <div className="hero-ctas">
             <a className="btn" href="#contact">Request a quotation</a>
@@ -77,16 +83,16 @@ function Hero() {
             <span className="dot" aria-hidden="true" /> We reply to every inquiry within 24 hours.
           </p>
           <div className="hero-meta">
-            <div><b>3</b> natural colours</div>
+            <div><b>2</b> natural colours</div>
             <div><b>4</b> standard sizes</div>
-            <div><b>35–40 mm</b> calibrated</div>
+            <div><b>{THICKNESS}</b> calibrated</div>
             <div><b>FCL</b> minimum order</div>
           </div>
         </div>
         <div className="hero-photo">
           <img
             src="/images/hero.jpg"
-            alt="Stacked pink, green and grey sandstone tiles in the Mirzapur yard"
+            alt="Stacked pink and green Mirzapur sandstone tiles, sawn finish, in the yard"
             fetchpriority="high"
           />
         </div>
@@ -97,7 +103,7 @@ function Hero() {
         <span className="divider" aria-hidden="true" />
         <span>HS codes 6802.29 / 6802.99</span>
         <span className="divider" aria-hidden="true" />
-        <span>FOB Indian Port</span>
+        <span>FOB {FOB_PORT}</span>
       </div>
     </section>
   );
@@ -108,7 +114,7 @@ function Stones() {
     <section id="stones" className="tint">
       <div className="wrap">
         <div className="sec-head">
-          <h2>Three colours, one stone belt</h2>
+          <h2>Two colours, one stone belt</h2>
           <Strata center />
           <p>
             Every tile comes from the sandstone strata of Mirzapur, Uttar Pradesh —
@@ -118,7 +124,7 @@ function Stones() {
         <div className="stones">
           {STONES.map((s) => (
             <article className={`stone-card ${s.tone}`} key={s.name}>
-              <img src={s.img} alt={`${s.name} tile`} loading="lazy" />
+              <img src={s.img} alt={s.alt} loading="lazy" />
               <div className="pad">
                 <span className="chip" aria-hidden="true" />
                 <h3>{s.name}</h3>
@@ -146,8 +152,8 @@ function Products() {
         </div>
         <div className="spec-grid">
           <div className="spec-cell"><b>Sandstone</b><span>Natural Indian</span></div>
-          <div className="spec-cell"><b>35–40 mm</b><span>Calibrated thickness</span></div>
-          <div className="spec-cell"><b>Polished / Natural</b><span>Finish</span></div>
+          <div className="spec-cell"><b>{THICKNESS}</b><span>Calibrated thickness</span></div>
+          <div className="spec-cell"><b>{FINISH}</b><span>Finish</span></div>
           <div className="spec-cell"><b>6802.29 / 6802.99</b><span>HS codes</span></div>
           <div className="spec-cell"><b>≈ 270–300 m²</b><span>Per 20 ft container</span></div>
         </div>
@@ -156,6 +162,14 @@ function Products() {
             <div className="size-tile" key={s.ft}>
               <b>{s.ft}</b>
               <span>{s.mm}</span>
+            </div>
+          ))}
+        </div>
+        <div className="sizes">
+          {METRIC_SIZES.map((mm) => (
+            <div className="size-tile" key={mm}>
+              <b>{mm}</b>
+              <span>Metric sizes — on request</span>
             </div>
           ))}
         </div>
@@ -197,7 +211,7 @@ function Gallery() {
           {GALLERY.map((g) => (
             <figure key={g.src}>
               <button className="gallery-open" onClick={() => setOpen(g)} aria-label={`View ${g.label}`}>
-                <img src={g.thumb} alt={g.label} loading="lazy" />
+                <img src={g.thumb} alt={g.alt} loading="lazy" />
               </button>
               <figcaption>{g.label}</figcaption>
             </figure>
@@ -221,7 +235,7 @@ function Gallery() {
       {open && (
         <div className="lightbox" onClick={closeLightbox} role="dialog" aria-modal="true" aria-label={open.label}>
           <button onClick={closeLightbox} aria-label="Close image">×</button>
-          <img src={open.src} alt={open.label} />
+          <img src={open.src} alt={open.alt} />
           <p className="lightbox-caption">{open.label}</p>
         </div>
       )}
@@ -307,7 +321,7 @@ function About() {
       <div className="wrap about-grid">
         <img
           src="/images/yard-rows-a.jpg"
-          alt="Rows of calibrated grey sandstone tiles ready in the yard"
+          alt="Rows of calibrated Mirzapur sandstone tiles, sawn finish, ready in the yard"
           loading="lazy"
         />
         <div>
@@ -318,6 +332,7 @@ function About() {
             from established quarries and processing units of Mirzapur, Uttar
             Pradesh — home to India's renowned sandstone belt.
           </p>
+          <p>{GI_STORY}</p>
           <p>
             With trusted manufacturing partners having years of stone processing
             experience, we ensure consistent quality, competitive pricing and reliable
@@ -325,8 +340,8 @@ function About() {
           </p>
           <ul className="trust">
             <li>Multi-stage inspection — after cutting, finishing and before packing</li>
-            <li>Calibrated 35–40 mm thickness across the full order</li>
-            <li>Export-grade sea-worthy wooden crates</li>
+            <li>Calibrated {THICKNESS} thickness across the full order</li>
+            <li>Export-grade {PACKING}</li>
             <li>Complete export documentation with every shipment</li>
           </ul>
         </div>
@@ -496,6 +511,7 @@ function Contact() {
                 <select value={form.size} onChange={set("size")}>
                   <option value="">Select size</option>
                   {SIZES.map((s) => <option key={s.ft} value={s.ft}>{s.ft} ({s.mm})</option>)}
+                  {METRIC_SIZES.map((mm) => <option key={mm} value={mm}>{mm} (on request)</option>)}
                   <option value="Custom size">Custom size</option>
                 </select>
               </label>
@@ -540,7 +556,7 @@ function Contact() {
             <p>{SITE.contactPerson}</p>
             <p><a href={`tel:${SITE.phone.replace(/\s/g, "")}`}>{SITE.phone}</a></p>
             <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
-            <p className="creds">{SITE.iec} · {SITE.gstin}</p>
+            <p className="creds">{CREDS}</p>
             <div className="markets">
               <span>Exporting to</span>
               {SITE.markets.map((m) => <b key={m}>{m}</b>)}
@@ -566,8 +582,8 @@ function Footer({ home, onNavigate }) {
           <b>{SITE.brand}</b>
           <small>{SITE.brandSub}</small>
           <p>{SITE.tagline} · {SITE.origin}</p>
-          <p>Pink · Green · Grey natural sandstone</p>
-          <p className="footer-creds">{SITE.iec} · {SITE.gstin}</p>
+          <p>Pink · Green natural sandstone</p>
+          <p className="footer-creds">{CREDS}</p>
         </div>
         <nav className="footer-nav" aria-label="Footer">
           <span className="footer-head">Explore</span>
@@ -639,9 +655,9 @@ function LegalLayout({ children, onHome, onNavigate }) {
 const PAGE_META = {
   home: {
     path: "/",
-    title: "Vamika Minerals & Exports — Natural Indian Sandstone from Mirzapur | Pink, Green & Grey",
+    title: "Vamika Minerals & Exports — Natural Indian Sandstone from Mirzapur | Pink & Green",
     description:
-      "Vamika Minerals & Exports supplies premium natural Indian sandstone tiles from Mirzapur — Pink, Green and Grey, calibrated 35–40mm. FOB Indian Port. Exporting to UAE, USA and UK.",
+      `Vamika Minerals & Exports supplies GI-tagged Chunar sandstone tiles from Mirzapur — Pink and Green, ${FINISH} finish, calibrated ${THICKNESS}. FOB ${FOB_PORT}. Exporting to UAE, USA and UK.`,
   },
   privacy: {
     path: "/privacy",

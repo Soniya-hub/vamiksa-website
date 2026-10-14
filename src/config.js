@@ -2,8 +2,24 @@
 // VAMIKA MINERALS & EXPORTS — SITE CONFIG
 // All contact details are edited in this one file.
 // When the IEC / GSTIN / phone / email are confirmed, update
-// only the SITE object below.
+// only the SITE object and the constants below.
 // ============================================================
+
+// IEC number from DGFT. Leave empty to hide it; once filled it shows as
+// "IEC: <number>" next to the GSTIN.
+export const IEC_NUMBER = "";
+
+// Shared product / export facts — change here and every section, FAQ and
+// on-page meta tag updates. (index.html meta tags are static: keep in sync.)
+export const THICKNESS = "35 mm (±2 mm)";
+export const FINISH = "Sawn (natural)";
+// TODO: replace with your actual port of loading, e.g. "Nhava Sheva" or "Mundra".
+export const FOB_PORT = "[PORT NAME, e.g. Nhava Sheva / Mundra]";
+export const PACKING = "heat-treated (ISPM-15) sea-worthy wooden crates";
+export const PAYMENT_TERMS =
+  "30% advance via bank transfer (TT); balance 70% against scanned copy of Bill of Lading. Original documents released on full payment. Letter of Credit (LC) accepted for bulk orders.";
+export const GI_STORY =
+  "GI-tagged Chunar sandstone (GI tag 2019) — the same stone belt used for the Ashokan pillars and Chunar Fort.";
 
 export const SITE = {
   brand: "VAMIKA",
@@ -16,8 +32,6 @@ export const SITE = {
   phone: "+91 72338 12072",            // WhatsApp number
   whatsappLink: "https://wa.me/917233812072", // 91 + number, no spaces
   email: "info@vamikaexports.com",
-  // TODO: replace with the real IEC once issued
-  iec: "IEC: Applied",                 // e.g. "IEC: 0123456789"
   gstin: "GSTIN: 09ARZPP9424B2Z5",
 
   // TODO: full yard/office address + Google Maps link.
@@ -39,6 +53,7 @@ export const STONES = [
     desc: "Warm rose-tan surface with fine, even grain. A natural favourite for patios, garden paths and facades.",
     uses: ["Patios", "Garden paths", "Facades"],
     img: "/images/pink-1x1.jpg",
+    alt: "Mirzapur pink sandstone, sawn finish, 1 × 1 ft (305 × 305 mm)",
   },
   {
     name: "Green Sandstone",
@@ -46,13 +61,7 @@ export const STONES = [
     desc: "Soft sage-green tiles with subtle natural veining. Distinctive choice for pool surrounds and landscaping.",
     uses: ["Pool surrounds", "Landscaping", "Terraces"],
     img: "/images/1.5x1.5-top.jpg",
-  },
-  {
-    name: "Grey Sandstone",
-    tone: "grey",
-    desc: "Clean, contemporary grey with consistent tone. Suits modern flooring, driveways and wall cladding.",
-    uses: ["Flooring", "Driveways", "Wall cladding"],
-    img: "/images/2x2-top.jpg",
+    alt: "Mirzapur green sandstone, sawn finish, 1.5 × 1.5 ft (457 × 457 mm)",
   },
 ];
 
@@ -63,19 +72,20 @@ export const SIZES = [
   { ft: "2 × 2 ft", mm: "610 × 610 mm" },
 ];
 
+export const METRIC_SIZES = ["600 × 600 mm", "600 × 900 mm"]; // on request
+
 export const GALLERY = [
-  { src: "/images/pink-1x1.jpg", thumb: "/images/pink-1x1-thumb.jpg", label: "Pink sandstone — 1 × 1 ft" },
-  { src: "/images/1.5x1.5-top.jpg", thumb: "/images/1.5x1.5-top-thumb.jpg", label: "Green sandstone — 1.5 × 1.5 ft" },
-  { src: "/images/1.5x1.5-stack-angle.jpg", thumb: "/images/1.5x1.5-stack-angle-thumb.jpg", label: "Calibrated stack — 1.5 × 1.5 ft" },
-  { src: "/images/1.5x1.5-stack-portrait.jpg", thumb: "/images/1.5x1.5-stack-portrait-thumb.jpg", label: "Tile edges — 1.5 × 1.5 ft" },
-  { src: "/images/2x2-top.jpg", thumb: "/images/2x2-top-thumb.jpg", label: "Grey-green sandstone — 2 × 2 ft" },
-  { src: "/images/2x2-front.jpg", thumb: "/images/2x2-front-thumb.jpg", label: "Natural veining — 2 × 2 ft" },
-  { src: "/images/2x2-stack-angle.jpg", thumb: "/images/2x2-stack-angle-thumb.jpg", label: "Yard stack — 2 × 2 ft" },
-  { src: "/images/2x2-edge-closeup.jpg", thumb: "/images/2x2-edge-closeup-thumb.jpg", label: "Calibrated edges — 35–40 mm" },
-  { src: "/images/1.5x1.5-flat.jpg", thumb: "/images/1.5x1.5-flat-thumb.jpg", label: "Even surface — 1.5 × 1.5 ft" },
-  { src: "/images/multi-stack-b.jpg", thumb: "/images/multi-stack-b-thumb.jpg", label: "Multi-tone stack — 1.5 × 2 ft" },
-  { src: "/images/multi-yard.jpg", thumb: "/images/multi-yard-thumb.jpg", label: "Pink-grey range — 1.5 × 2 ft" },
-  { src: "/images/yard-rows-a.jpg", thumb: "/images/yard-rows-a-thumb.jpg", label: "Bulk yard stock" },
+  { src: "/images/pink-1x1.jpg", thumb: "/images/pink-1x1-thumb.jpg", alt: "Mirzapur pink sandstone tile, sawn finish, 1 × 1 ft (305 × 305 mm), top view", label: "Pink sandstone — 1 × 1 ft" },
+  { src: "/images/1.5x1.5-top.jpg", thumb: "/images/1.5x1.5-top-thumb.jpg", alt: "Mirzapur green sandstone tile, sawn finish, 1.5 × 1.5 ft (457 × 457 mm), top view", label: "Green sandstone — 1.5 × 1.5 ft" },
+  { src: "/images/1.5x1.5-stack-angle.jpg", thumb: "/images/1.5x1.5-stack-angle-thumb.jpg", alt: "Stack of calibrated green sandstone tiles, sawn finish, 1.5 × 1.5 ft, angled view", label: "Calibrated stack — 1.5 × 1.5 ft" },
+  { src: "/images/1.5x1.5-stack-portrait.jpg", thumb: "/images/1.5x1.5-stack-portrait-thumb.jpg", alt: "Edges of stacked sandstone tiles, sawn finish, 1.5 × 1.5 ft", label: "Tile edges — 1.5 × 1.5 ft" },
+  { src: "/images/2x2-front.jpg", thumb: "/images/2x2-front-thumb.jpg", alt: "Natural pink veining on a Mirzapur sandstone tile, sawn finish, 2 × 2 ft", label: "Natural veining — 2 × 2 ft" },
+  { src: "/images/2x2-stack-angle.jpg", thumb: "/images/2x2-stack-angle-thumb.jpg", alt: "Stack of 2 × 2 ft sandstone tiles, sawn finish, in the Mirzapur yard", label: "Yard stack — 2 × 2 ft" },
+  { src: "/images/2x2-edge-closeup.jpg", thumb: "/images/2x2-edge-closeup-thumb.jpg", alt: "Close-up of calibrated sandstone tile edges, 35 mm thickness, sawn finish", label: `Calibrated edges — ${THICKNESS}` },
+  { src: "/images/1.5x1.5-flat.jpg", thumb: "/images/1.5x1.5-flat-thumb.jpg", alt: "Even surface of a sawn-finish sandstone tile, 1.5 × 1.5 ft", label: "Even surface — 1.5 × 1.5 ft" },
+  { src: "/images/multi-stack-b.jpg", thumb: "/images/multi-stack-b-thumb.jpg", alt: "Stack of pink and green Mirzapur sandstone tiles, sawn finish, 1.5 × 2 ft", label: "Multi-tone stack — 1.5 × 2 ft" },
+  { src: "/images/multi-yard.jpg", thumb: "/images/multi-yard-thumb.jpg", alt: "Stack of Mirzapur pink sandstone tiles, sawn finish, 1.5 × 2 ft", label: "Pink sandstone range — 1.5 × 2 ft" },
+  { src: "/images/yard-rows-a.jpg", thumb: "/images/yard-rows-a-thumb.jpg", alt: "Rows of bulk sawn-finish sandstone tile stock in the Mirzapur yard", label: "Bulk yard stock" },
 ];
 
 export const VIDEOS = [
@@ -95,22 +105,20 @@ export const PROCESS = [
   },
   {
     title: "Production & inspection",
-    desc: "Tiles are cut, calibrated to 35–40 mm and inspected after cutting, finishing and again before packing.",
+    desc: `Tiles are cut, calibrated to ${THICKNESS} and inspected after cutting, finishing and again before packing.`,
   },
   {
     title: "Packing & shipment",
-    desc: "Stock is packed in sea-worthy wooden crates and shipped FOB Indian Port with complete export documentation.",
+    desc: `Stock is packed in ${PACKING} and shipped FOB ${FOB_PORT} with complete export documentation.`,
   },
 ];
 
 // Quality & export packing — the how, not just the what. A new exporter that
 // can explain its process reads as experienced.
-// NOTE: confirm the calibration tolerance figure below matches what you can
-// actually hold on every order before promising it to buyers.
 export const QUALITY = [
   {
     title: "Calibration & tolerance",
-    desc: "Tiles are machine-calibrated to a consistent 35–40 mm thickness, held to roughly ±1.5 mm across the order so they lay flat and even on site.",
+    desc: `Tiles are machine-calibrated to a consistent ${THICKNESS} thickness across the order, so they lay flat and even on site.`,
   },
   {
     title: "Multi-stage inspection",
@@ -122,7 +130,7 @@ export const QUALITY = [
   },
   {
     title: "Export-grade crating",
-    desc: "Tiles are edge-protected and packed into sea-worthy wooden crates, strapped and sized for safe handling and long ocean transit.",
+    desc: `Tiles are edge-protected and packed into ${PACKING}, strapped and sized for safe handling and long ocean transit.`,
   },
   {
     title: "Container loading",
@@ -145,7 +153,11 @@ export const FAQS = [
   ],
   [
     "What are the payment terms?",
-    "50% advance by bank transfer (TT) and the balance 50% before shipment. Letters of Credit (LC) are accepted for bulk orders.",
+    PAYMENT_TERMS,
+  ],
+  [
+    "What finish and thickness do you supply?",
+    `${FINISH} finish, calibrated ${THICKNESS}. ${GI_STORY}`,
   ],
   [
     "Which documents come with a shipment?",
@@ -153,7 +165,7 @@ export const FAQS = [
   ],
   [
     "Do you supply custom sizes?",
-    "Yes — custom and larger sizes (for example 1.5 × 4 ft) are available on request, subject to availability.",
+    `Yes — metric sizes (${METRIC_SIZES.join(" and ")}) and custom or larger sizes (for example 1.5 × 4 ft) are available on request, subject to availability.`,
   ],
   [
     "How long does delivery take?",
@@ -162,10 +174,10 @@ export const FAQS = [
 ];
 
 export const TERMS = [
-  ["Pricing basis", "FOB Indian Port. CIF rates available on request."],
-  ["Payment", "50% advance via bank transfer (TT), balance 50% before shipment. Letter of Credit (LC) accepted for bulk orders."],
+  ["Pricing basis", `FOB ${FOB_PORT}. CIF rates available on request.`],
+  ["Payment", PAYMENT_TERMS],
   ["Minimum order", "One full container load (FCL). Mixed sizes and colours per container on request."],
-  ["Packing", "Export-grade sea-worthy wooden crates."],
+  ["Packing", `Export-grade ${PACKING}.`],
   ["Samples", "Available at nominal cost plus courier charges — adjustable against confirmed order."],
   ["Documentation", "Commercial invoice, packing list, certificate of origin and complete export documentation."],
   ["Bank charges", "All bank charges outside India to be borne by the buyer."],

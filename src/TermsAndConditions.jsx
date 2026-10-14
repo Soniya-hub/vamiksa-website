@@ -1,4 +1,4 @@
-import { SITE } from "./config";
+import { SITE, THICKNESS, FINISH, FOB_PORT, PACKING, PAYMENT_TERMS } from "./config";
 
 export default function TermsAndConditions() {
   return (
@@ -38,7 +38,7 @@ export default function TermsAndConditions() {
           <ul>
             <li><b>30-day validity</b> — prices may change after expiration</li>
             <li><b>Product availability</b> — confirmation upon order placement</li>
-            <li><b>FOB basis</b> — Free on Board, Indian port (unless otherwise agreed)</li>
+            <li><b>FOB basis</b> — Free on Board, {FOB_PORT} (unless otherwise agreed)</li>
             <li><b>Spot rates</b> — subject to market conditions and supply</li>
           </ul>
           <p>
@@ -48,9 +48,7 @@ export default function TermsAndConditions() {
 
           <h2>4. Payment Terms</h2>
           <ul>
-            <li>50% advance via bank transfer (TT) to secure the order</li>
-            <li>Balance 50% due before shipment</li>
-            <li>Letter of Credit (LC) accepted for bulk/regular orders</li>
+            <li>{PAYMENT_TERMS}</li>
             <li>All bank charges outside India borne by the buyer</li>
             <li>Invoices issued in Indian Rupees (₹) unless otherwise agreed</li>
           </ul>
@@ -63,8 +61,8 @@ export default function TermsAndConditions() {
 
           <h2>6. Product Specifications</h2>
           <ul>
-            <li><b>Calibration:</b> 35–40 mm thickness (tolerance ± 2 mm)</li>
-            <li><b>Finish:</b> Natural or polished as specified</li>
+            <li><b>Calibration:</b> {THICKNESS} thickness</li>
+            <li><b>Finish:</b> {FINISH}</li>
             <li><b>Grading:</b> Export-grade quality, multi-stage inspection</li>
             <li><b>HS Codes:</b> 6802.29 (sandstone, worked) / 6802.99 (sandstone, other)</li>
           </ul>
@@ -82,9 +80,9 @@ export default function TermsAndConditions() {
 
           <h2>8. Shipping and Delivery</h2>
           <ul>
-            <li><b>FOB (Free on Board):</b> Delivered to Indian port; buyer arranges shipping</li>
+            <li><b>FOB (Free on Board):</b> Delivered to {FOB_PORT}; buyer arranges shipping</li>
             <li><b>CIF (Cost, Insurance, Freight):</b> Available on request at additional cost</li>
-            <li><b>Packing:</b> Export-grade sea-worthy wooden crates</li>
+            <li><b>Packing:</b> Export-grade {PACKING}</li>
             <li><b>Documentation:</b> Commercial invoice, packing list, certificate of origin, export permits</li>
             <li><b>Delivery time:</b> 60–90 days from order confirmation (subject to availability)</li>
           </ul>
@@ -92,7 +90,7 @@ export default function TermsAndConditions() {
           <h2>9. Risk and Title</h2>
           <p>
             Under FOB terms, risk of loss and title pass to the buyer once goods are delivered to the
-            vessel at the Indian port. For CIF terms, risk passes upon shipment.
+            vessel at the port of loading. For CIF terms, risk passes upon shipment.
           </p>
 
           <h2>10. Quality Assurance</h2>

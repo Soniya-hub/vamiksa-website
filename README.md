@@ -13,7 +13,6 @@ contactPerson: "Your Name",              // apna naam
 phone: "+91 XXXXX XXXXX",                // WhatsApp number
 whatsappLink: "https://wa.me/91XXXXXXXXXX",  // 91 + number, no spaces
 email: "your@company.com",               // Business email
-iec: "IEC: 0123456789",                  // IEC number (from DGFT)
 gstin: "GSTIN: 09XXXXX0000X1Z5",        // GSTIN (from GST portal)
 ```
 
@@ -62,13 +61,13 @@ npm run lint      # Check code quality
 
 ### 🎨 Design
 - **Professional layout**: hero, product showcase, gallery, contact
-- **3-color palette**: Pink, Green, Grey (from natural stone)
+- **3-color palette**: Pink, Green (from natural stone)
 - **Custom fonts**: Cinzel (brand), Cormorant Garamond (display), Montserrat (body)
 - **Dark/light modes**: adaptive to user preference
 
 ### 📊 Sections Included
 1. **Hero** — Eye-catching introduction
-2. **Stones** — Show 3 natural colors
+2. **Stones** — Show 2 natural colors
 3. **Products & Sizes** — Specifications & calibration info
 4. **Gallery** — Photos + videos from yard
 5. **Export Terms** — Clear payment/shipping terms
@@ -118,7 +117,7 @@ vamika-website/
 ### To Make Even More Trustworthy
 
 📌 **Add your company logo** to `public/images/logo.png`  
-📌 **Add IEC & GSTIN** once approved (edit config.js)  
+📌 **Add IEC** once issued — set `IEC_NUMBER` in config.js (empty = hidden)  
 📌 **Add testimonials** from past customers (Edit About section)  
 📌 **Add team photos** — humanize your business  
 📌 **Use custom business email** (not Gmail)  
